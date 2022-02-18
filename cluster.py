@@ -56,11 +56,15 @@ while (i<num_lines):
     i=i+1
 
 
-
+# Number of phyla of the molecules in the benchmark ccording to European Nucleotide Archive taxonom
+# To use a different taxonomy change thee numbers accordingly
 
 n_clusters_Archaea16S = 3
 n_clusters_Bacteria16S = 17
 n_clusters_Eukaryota16S= 11
+
+# Labels of Phyla according to European Nucleotide Archive taxonomy. 
+# To use a different taxonomy change these arrays accordingly
 
 labels_true_Archaea16S= [ 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2]
 
@@ -96,6 +100,9 @@ elif(domain=="Eukaryota"):
 
 print("Domain:", domain)
 print("Method:", method)
+
+# Parameter linkage can be varied to obtain clusters differently
+# Options are: single, complete, average, ward (but ward works only if Euclian distance is used)
 model = AgglomerativeClustering(n_clusters=n_clusters, affinity='precomputed', linkage ='complete').fit(distance_matrix)
 labels_pred = model.fit_predict(distance_matrix)
 
